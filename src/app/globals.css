@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+@theme {
+  /* Custom Colors - Tailwind v4 format */
+  --color-primary: #1E2A38;
+  --color-primary-dark: #202B39;
+  --color-secondary: #F4F4F4;
+  --color-accent: #6C8EBF;
+  --color-accent-dark: #526EA0;
+  --color-highlight: #7FB685;
+  --color-highlight-light: #BBF7D0;
+  --color-highlight-pale: #DCFCE7;
+}
+
+:root {
+  --background: #f4f4f4;
+  --foreground: #1f2933;
+}
+
+body {
+  background-image: 
+    radial-gradient(circle at top left, rgba(111, 148, 191, 0.18), transparent 55%),
+    radial-gradient(circle at bottom right, rgba(127, 182, 133, 0.18), transparent 55%);
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-poppins), var(--font-inter), system-ui, sans-serif;
+}
