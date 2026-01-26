@@ -114,7 +114,7 @@ export default function SelfCheckPage() {
       <Header />
 
       {/* Main Content */}
-      <main className="relative overflow-hidden px-6 py-12 lg:py-26 sm:px-16 sm:py-16">
+      <main className="relative overflow-hidden px-6 py-12 pt-24 lg:py-26 sm:px-16 sm:py-16">
         {/* Background decorations */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute -top-40 -right-40 h-80 w-80 rounded-full bg-highlight/15 blur-3xl animate-pulse"></div>

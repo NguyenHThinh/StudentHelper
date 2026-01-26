@@ -100,7 +100,7 @@ export default function ChatContainer() {
     };
 
     return (
-        <div className="flex flex-1 flex-col lg:py-26 overflow-hidden">
+        <div className="flex flex-1 flex-col pt-20 lg:py-26 overflow-hidden">
             {/* Messages Area */}
             <div className="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
                 <div className="mx-auto max-w-3xl space-y-6">

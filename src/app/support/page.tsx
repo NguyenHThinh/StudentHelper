@@ -10,7 +10,7 @@ export default function SupportPage() {
             <Header />
 
             {/* Main Content */}
-            <main className="relative overflow-hidden px-6 py-12 sm:px-16 sm:py-16 lg:py-26">
+            <main className="relative overflow-hidden px-6 py-12 pt-24 sm:px-16 sm:py-16 lg:pt-26 lg:pb-32">
                 {/* Background decorations */}
                 <div className="absolute inset-0 overflow-hidden">
                     <div className="absolute -top-40 -right-40 h-80 w-80 rounded-full bg-accent/15 blur-3xl animate-pulse"></div>
