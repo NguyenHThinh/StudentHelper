@@ -9,7 +9,7 @@ export default function FeaturesSection() {
                     <span className="inline-block px-4 py-1.5 bg-accent/10 text-accent-dark text-sm font-medium rounded-full mb-4">
                         Tính năng nổi bật
                     </span>
-                    <h2 className="font-poppins text-3xl sm:text-4xl font-bold text-primary mb-4">
+                    <h2 className="text-3xl sm:text-4xl font-bold text-primary mb-4">
                         Chúng tôi hỗ trợ bạn như thế nào?
                     </h2>
                     <p className="text-slate-600 max-w-2xl mx-auto">
@@ -28,7 +28,7 @@ export default function FeaturesSection() {
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
                                     </svg>
                                 </div>
-                                <h3 className="font-poppins text-xl font-semibold text-primary mb-3">Kiểm tra bản thân</h3>
+                                <h3 className="text-xl font-semibold text-primary mb-3">Kiểm tra bản thân</h3>
                                 <p className="text-slate-600 mb-6 leading-relaxed">
                                     Bài đánh giá nhanh giúp bạn nhận biết tình trạng học tập hiện tại và mức độ cần hỗ trợ.
                                 </p>
@@ -50,7 +50,7 @@ export default function FeaturesSection() {
                                 <div className="w-16 h-16 bg-gradient-to-br from-accent/20 to-accent/5 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                                     <Image src="/assets/support.png" alt="Hỗ trợ" width={40} height={40} className="rounded-lg" />
                                 </div>
-                                <h3 className="font-poppins text-xl font-semibold text-primary mb-3">Liên hệ hỗ trợ</h3>
+                                <h3 className="text-xl font-semibold text-primary mb-3">Liên hệ hỗ trợ</h3>
                                 <p className="text-slate-600 mb-6 leading-relaxed">
                                     Kết nối với chuyên gia tư vấn, cố vấn học tập và các nguồn hỗ trợ chính thức.
                                 </p>
@@ -78,7 +78,7 @@ export default function FeaturesSection() {
                                         Phổ biến nhất
                                     </span>
                                 </div>
-                                <h3 className="font-poppins text-xl font-semibold mb-3">Chat với AI</h3>
+                                <h3 className="text-xl font-semibold mb-3">Chat với AI</h3>
                                 <p className="text-white/90 mb-6 leading-relaxed">
                                     Trò chuyện với AI để nhận lời khuyên tức thì, 24/7, hoàn toàn bảo mật và miễn phí.
                                 </p>

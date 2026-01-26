@@ -27,7 +27,7 @@ export default function Header() {
                             </div>
                         </div>
                         <div>
-                            <span className="font-poppins text-xl font-bold bg-gradient-to-r from-primary to-accent-dark bg-clip-text text-transparent">
+                            <span className="text-xl font-bold bg-gradient-to-r from-primary to-accent-dark bg-clip-text text-transparent">
                                 Student Helper
                             </span>
                             <p className="text-[10px] text-slate-500 font-medium tracking-wide">Đồng hành cùng bạn</p>

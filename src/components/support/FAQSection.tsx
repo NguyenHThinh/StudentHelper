@@ -22,7 +22,7 @@ export default function FAQSection() {
 
     return (
         <div className="mt-8">
-            <h2 className="mb-4 font-poppins text-xl font-semibold text-primary">
+            <h2 className="mb-4 text-xl font-semibold text-primary">
                 Câu hỏi thường gặp
             </h2>
             <div className="space-y-3">

@@ -20,7 +20,7 @@ export default function HeroSection() {
                             <span className="text-sm font-medium text-accent-dark">Hỗ trợ sinh viên 24/7</span>
                         </div>
 
-                        <h1 className="font-poppins text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
+                        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
                             <span className="text-primary">Bạn không </span>
                             <span className="relative">
                                 <span className="bg-gradient-to-r from-accent via-accent-dark to-highlight bg-clip-text text-transparent">

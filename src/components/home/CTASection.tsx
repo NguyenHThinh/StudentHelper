@@ -9,7 +9,7 @@ export default function CTASection() {
                     <div className="absolute bottom-0 left-0 w-48 h-48 bg-highlight/20 rounded-full blur-2xl"></div>
 
                     <div className="relative">
-                        <h2 className="font-poppins text-3xl sm:text-4xl font-bold mb-4">
+                        <h2 className="text-3xl sm:text-4xl font-bold mb-4">
                             Sẵn sàng bắt đầu?
                         </h2>
                         <p className="text-white/80 text-lg mb-8 max-w-xl mx-auto">

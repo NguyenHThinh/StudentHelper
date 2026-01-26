@@ -21,7 +21,7 @@ export default function ResultCard({ result, answers, totalQuestions, onRestart 
         <div className={`rounded-3xl bg-gradient-to-br ${result.bgGradient} p-8 shadow-[0_20px_60px_rgba(0,0,0,0.1)] backdrop-blur-md sm:p-10`}>
             <div className="text-center">
                 <div className="mb-6">
-                    <h2 className={`font-poppins text-3xl font-bold ${result.color} sm:text-4xl`}>
+                    <h2 className={`text-3xl font-bold ${result.color} sm:text-4xl`}>
                         {result.title}
                     </h2>
                 </div>

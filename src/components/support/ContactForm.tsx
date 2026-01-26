@@ -24,7 +24,7 @@ export default function ContactForm() {
 
     return (
         <div className="rounded-3xl bg-white/90 p-8 shadow-[0_20px_60px_rgba(0,0,0,0.1)] backdrop-blur-md h-fit">
-            <h2 className="mb-6 font-poppins text-xl font-semibold text-primary">
+            <h2 className="mb-6 text-xl font-semibold text-primary">
                 Gửi tin nhắn cho chúng tôi
             </h2>
 
@@ -35,7 +35,7 @@ export default function ContactForm() {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                         </svg>
                     </div>
-                    <h3 className="font-poppins text-xl font-semibold text-primary">Đã gửi thành công!</h3>
+                    <h3 className="text-xl font-semibold text-primary">Đã gửi thành công!</h3>
                     <p className="mt-2 text-slate-600">Chúng tôi sẽ phản hồi bạn trong thời gian sớm nhất.</p>
                 </div>
             ) : (

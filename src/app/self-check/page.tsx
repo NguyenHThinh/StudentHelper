@@ -130,7 +130,7 @@ export default function SelfCheckPage() {
               </svg>
               Bài kiểm tra tự đánh giá
             </div>
-            <h1 className="font-poppins text-3xl font-bold text-primary sm:text-4xl">
+            <h1 className="text-3xl font-bold text-primary sm:text-4xl">
               Kiểm tra bản thân
             </h1>
             <p className="mt-3 text-slate-600">

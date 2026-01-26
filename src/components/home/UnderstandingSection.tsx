@@ -17,7 +17,7 @@ export default function UnderstandingSection() {
                         <span className="inline-block px-4 py-1.5 bg-highlight/10 text-highlight text-sm font-medium rounded-full mb-6">
                             Chúng tôi hiểu bạn
                         </span>
-                        <h2 className="font-poppins text-3xl sm:text-4xl font-bold text-primary mb-6">
+                        <h2 className="text-3xl sm:text-4xl font-bold text-primary mb-6">
                             Bạn có đang cảm thấy những điều này?
                         </h2>
 

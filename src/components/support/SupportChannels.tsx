@@ -60,7 +60,7 @@ const supportChannels: SupportChannel[] = [
 export default function SupportChannels() {
     return (
         <div className="space-y-6">
-            <h2 className="font-poppins text-xl font-semibold text-primary">
+            <h2 className="text-xl font-semibold text-primary">
                 Các kênh hỗ trợ
             </h2>
 

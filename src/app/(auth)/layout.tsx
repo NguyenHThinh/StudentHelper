@@ -17,7 +17,7 @@ export default function AuthLayout({
             </div>
 
             <div className="space-y-3">
-              <h1 className="font-poppins text-3xl lg:text-4xl font-semibold leading-tight text-slate-50">
+              <h1 className="text-3xl lg:text-4xl font-semibold leading-tight text-slate-50">
                 Student Helper
               </h1>
               <p className="max-w-md text-sm leading-relaxed text-slate-200/85">

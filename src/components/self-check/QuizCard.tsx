@@ -30,7 +30,7 @@ export default function QuizCard({ questions, currentQuestion, progress, onAnswe
 
             {/* Question */}
             <div className="mb-8">
-                <h2 className="font-poppins text-xl font-semibold text-primary sm:text-2xl">
+                <h2 className="text-xl font-semibold text-primary sm:text-2xl">
                     {questions[currentQuestion].question}
                 </h2>
             </div>

@@ -13,7 +13,7 @@ export default function RegisterForm() {
                 <AuthTabs activeTab="register" />
 
                 <div className="space-y-1.5">
-                    <h2 className="font-poppins text-xl md:text-2xl font-semibold tracking-[-0.02em] text-primary">
+                    <h2 className="text-xl md:text-2xl font-semibold tracking-[-0.02em] text-primary">
                         Tạo tài khoản mới
                     </h2>
                     <p className="text-sm text-slate-500 max-w-md">

@@ -26,7 +26,7 @@ export default function SupportPage() {
                             </svg>
                             Luôn sẵn sàng hỗ trợ
                         </div>
-                        <h1 className="font-poppins text-3xl font-bold text-primary sm:text-4xl">
+                        <h1 className="text-3xl font-bold text-primary sm:text-4xl">
                             Liên hệ hỗ trợ
                         </h1>
                         <p className="mt-3 max-w-xl mx-auto text-slate-600">
