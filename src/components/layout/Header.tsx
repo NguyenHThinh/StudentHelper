@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 const navLinks = [
+    { href: "/timetable", label: "Thời khóa biểu" },
     { href: "/self-check", label: "Kiểm tra bản thân" },
     { href: "/support", label: "Liên hệ hỗ trợ" },
     { href: "/ai-support", label: "Chat AI" },
