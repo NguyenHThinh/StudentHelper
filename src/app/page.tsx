@@ -7,7 +7,7 @@ import CTASection from "@/components/home/CTASection";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-green-50/20 font-sans">
+    <div className="min-h-screen bg-linear-to-br from-slate-50 via-blue-50/30 to-green-50/20 font-sans">
       <Header />
       <HeroSection />
       <FeaturesSection />

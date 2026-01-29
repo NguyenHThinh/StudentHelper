@@ -6,9 +6,6 @@ import ContactForm from "@/components/support/ContactForm";
 export default function SupportPage() {
     return (
         <div className="min-h-screen bg-secondary font-sans">
-            {/* Header */}
-            <Header />
-
             {/* Main Content */}
             <main className="relative overflow-hidden px-6 py-12 pt-24 sm:px-16 sm:py-16 lg:pt-26 lg:pb-32">
                 {/* Background decorations */}

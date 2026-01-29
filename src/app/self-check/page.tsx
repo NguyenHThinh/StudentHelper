@@ -112,6 +112,7 @@ export default function SelfCheckPage() {
     <div className="min-h-screen bg-secondary font-sans">
       {/* Header */}
       <Header />
+      
 
       {/* Main Content */}
       <main className="relative overflow-hidden px-6 py-12 pt-24 lg:py-26 sm:px-16 sm:py-16">

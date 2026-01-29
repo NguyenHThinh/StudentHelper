@@ -46,10 +46,10 @@ export default function TimetablePage() {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-green-50/20 font-sans flex flex-col">
+        <div className="min-h-screen bg-linear-to-br from-slate-50 via-blue-50/30 to-green-50/20 font-sans flex flex-col pt-24">
             <Header />
 
-            <main className="flex-grow container mx-auto px-4 py-8 max-w-5xl">
+            <main className="grow container mx-auto px-4 py-8 max-w-5xl">
                 <div className="mb-8">
                     <h1 className="text-3xl font-bold text-slate-800 mb-2">Thời khóa biểu</h1>
                     <p className="text-slate-600">Quản lý lịch học của bạn (trong vòng 7 ngày).</p>

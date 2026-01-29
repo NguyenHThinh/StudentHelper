@@ -18,7 +18,7 @@ interface ResultCardProps {
 
 export default function ResultCard({ result, answers, totalQuestions, onRestart }: ResultCardProps) {
     return (
-        <div className={`rounded-3xl bg-gradient-to-br ${result.bgGradient} p-8 shadow-[0_20px_60px_rgba(0,0,0,0.1)] backdrop-blur-md sm:p-10`}>
+        <div className={`rounded-3xl bg-linear-to-br ${result.bgGradient} p-8 shadow-[0_20px_60px_rgba(0,0,0,0.1)] backdrop-blur-md sm:p-10`}>
             <div className="text-center">
                 <div className="mb-6">
                     <h2 className={`text-3xl font-bold ${result.color} sm:text-4xl`}>
@@ -63,14 +63,14 @@ export default function ResultCard({ result, answers, totalQuestions, onRestart 
                     {result.level === "concerning" || result.level === "urgent" ? (
                         <Link
                             href="/ai-support"
-                            className="rounded-full bg-gradient-to-r from-accent to-accent-dark px-6 py-3 font-semibold text-white shadow-lg transition-all hover:-translate-y-0.5 hover:shadow-xl"
+                            className="rounded-full bg-linear-to-r from-accent to-accent-dark px-6 py-3 font-semibold text-white shadow-lg transition-all hover:-translate-y-0.5 hover:shadow-xl"
                         >
                             Chat với AI ngay
                         </Link>
                     ) : (
                         <Link
                             href="/support"
-                            className="rounded-full bg-gradient-to-r from-accent to-accent-dark px-6 py-3 font-semibold text-white shadow-lg transition-all hover:-translate-y-0.5 hover:shadow-xl"
+                            className="rounded-full bg-linear-to-r from-accent to-accent-dark px-6 py-3 font-semibold text-white shadow-lg transition-all hover:-translate-y-0.5 hover:shadow-xl"
                         >
                             Xem thêm hỗ trợ
                         </Link>

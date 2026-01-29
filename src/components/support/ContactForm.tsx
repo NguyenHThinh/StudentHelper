@@ -106,7 +106,7 @@ export default function ContactForm() {
 
                     <button
                         type="submit"
-                        className="w-full rounded-xl bg-gradient-to-r from-accent to-accent-dark px-6 py-3.5 font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl"
+                        className="w-full rounded-xl bg-linear-to-r from-accent to-accent-dark px-6 py-3.5 font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl"
                     >
                         Gửi tin nhắn
                     </button>
@@ -114,7 +114,7 @@ export default function ContactForm() {
             )}
 
             {/* Quick AI support link */}
-            <div className="mt-6 rounded-xl bg-gradient-to-r from-accent/10 to-highlight/10 p-4">
+            <div className="mt-6 rounded-xl bg-linear-to-r from-accent/10 to-highlight/10 p-4">
                 <p className="text-sm text-slate-700">
                     Cần phản hồi ngay?{" "}
                     <Link href="/ai-support" className="font-semibold text-accent hover:underline">

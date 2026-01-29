@@ -100,7 +100,7 @@ export default function ChatContainer() {
     };
 
     return (
-        <div className="flex flex-1 flex-col pt-20 lg:py-26 overflow-hidden">
+        <div className="flex flex-1 flex-col pt-20 lg:pt-26 overflow-hidden">
             {/* Messages Area */}
             <div className="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
                 <div className="mx-auto max-w-3xl space-y-6">
@@ -112,7 +112,7 @@ export default function ChatContainer() {
                     {isTyping && (
                         <div className="flex justify-start">
                             <div className="flex gap-3">
-                                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-accent to-accent-dark">
+                                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-accent to-accent-dark">
                                     <svg className="h-5 w-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                                     </svg>

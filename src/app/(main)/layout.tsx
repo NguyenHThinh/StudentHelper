@@ -1,12 +1,9 @@
+import Footer from "@/components/layout/Footer";
+import Header from "@/components/layout/Header";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
-import { UserProvider } from "@/contexts/UserContext";
+import dynamic from "next/dynamic";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-});
+
 
 export const metadata: Metadata = {
   title: "Student Helper - Học thụ động thầm lặng | Silent Academic Struggle",
@@ -19,10 +16,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="vi">
-      <body className={`${inter.variable} antialiased`}>
-        <UserProvider>  {children} </UserProvider>
-      </body>
-    </html>
+    <div>
+      <Header />
+      {children}
+    </div>
   );
 }
