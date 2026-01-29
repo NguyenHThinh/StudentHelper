@@ -26,7 +26,7 @@ export default function ChatInput({ value, onChange, onSubmit, isTyping, inputRe
                     <button
                         type="submit"
                         disabled={!value.trim() || isTyping}
-                        className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-accent to-accent-dark text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:shadow-lg"
+                        className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-accent to-accent-dark text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:shadow-lg"
                     >
                         <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />

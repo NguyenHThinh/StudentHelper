@@ -22,7 +22,7 @@ export default function QuizCard({ questions, currentQuestion, progress, onAnswe
                 </div>
                 <div className="h-2 w-full overflow-hidden rounded-full bg-slate-200">
                     <div
-                        className="h-full rounded-full bg-gradient-to-r from-accent to-highlight transition-all duration-500 ease-out"
+                        className="h-full rounded-full bg-linear-to-r from-accent to-highlight transition-all duration-500 ease-out"
                         style={{ width: `${progress}%` }}
                     ></div>
                 </div>

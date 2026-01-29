@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
+import { useUser } from "@/contexts/UserContext";
 
 const loginSchema = z.object({
     email: z.string().email("Email không hợp lệ"),
@@ -17,6 +18,7 @@ const loginSchema = z.object({
 type LoginSchema = z.infer<typeof loginSchema>;
 
 export default function LoginForm() {
+    const { setUser } = useUser();
     const router = useRouter();
     const [rememberMe, setRememberMe] = useState(true);
     const [serverError, setServerError] = useState<string | null>(null);
@@ -33,37 +35,8 @@ export default function LoginForm() {
         setServerError(null);
         const response = await authService.login(data.email, data.password);
         if (response.message === 'Logged in successfully' || response.access_token || response.accessToken) {
-            // The API response changed in BE? No, it returns { message: 'Logged in successfully' } on success.
-            // But verifyToken sets cookie.
-            // The existing authService returns response.json().
-            // Ideally we check success flag if present, or status.
-            // But existing code checked response.success. authService catches error and returns { success: false }. 
-            // The new BE controller returns { message: ... } on success (200). It doesn't return unnecessary fields.
-            // But authService login returns response.json().
-            // Wait, fetch resolves to Response object. response.json() resolves to body.
-            // Ideally authService should return the parsed body.
-            // If response is not ok, message should be in body.
-            // Let's check authService again. It returns response.json().
-            // A 200 OK response has body { message: 'Logged in successfully' }.
-            // A 401 response has body { message: 'Invalid credentials' }.
-            // So we need to check if response contains success/failure indicator.
-            // The authService wrapper catches network errors but API errors pass through as JSON.
-            // So we check for 'message' content or if checks pass.
-            // Better yet, update authService to return standardized response?
-            // The existing code checked `response.success`. New BE code doesn't return `success: true`.
-            // I should update BE to return `success: true`? Or update FE to check `message`.
-            // User asked to "Add try catch", not rewrite API response format.
-            // Existing BE code: `res.status(200).json({ message: 'Logged in successfully' });`
-            // So `response.success` was prob undefined before?
-            // Wait, `auth.service.ts` catches ONLY network errors.
-            // The return creates `{ success: false, ...}`.
-            // If API returns `{ message: ... }`, then `response.success` is undefined.
-            // So `if (response.success)` fails.
-            // This suggests the Original FE code was broken or expecting something else.
-            // I should fix the FE to check correctly.
-            // Or fix BE to return standard format.
-            // Let's fix FE to check for success message or absence of error.
             if (response.message === 'Logged in successfully') {
+                setUser({ name: response.data.name, email: data.email });
                 router.push('/');
             } else {
                 setServerError(response.message || 'Đăng nhập thất bại');
@@ -75,6 +48,7 @@ export default function LoginForm() {
             } else {
                 // Fallback
                 if (response.message === 'Logged in successfully') {
+                    setUser({ name: response.name, email: data.email });
                     router.push('/');
                 } else {
                     setServerError(response.message || 'Đăng nhập thất bại');
@@ -180,7 +154,7 @@ export default function LoginForm() {
                     <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-full rounded-full border-none px-[1.1rem] py-[0.8rem] text-sm font-semibold text-slate-50 inline-flex items-center justify-center gap-1.5 cursor-pointer bg-gradient-to-br from-accent to-accent-dark shadow-[0_16px_35px_rgba(82,110,160,0.38)] transition-all duration-300 ease-out hover:-translate-y-[1.5px] hover:shadow-[0_22px_55px_rgba(82,110,160,0.4)] hover:brightness-[1.02] active:translate-y-0 active:scale-[0.99] active:shadow-[0_10px_30px_rgba(82,110,160,0.35)] disabled:opacity-70 disabled:cursor-not-allowed"
+                        className="w-full rounded-full border-none px-[1.1rem] py-[0.8rem] text-sm font-semibold text-slate-50 inline-flex items-center justify-center gap-1.5 cursor-pointer bg-linear-to-br from-accent to-accent-dark shadow-[0_16px_35px_rgba(82,110,160,0.38)] transition-all duration-300 ease-out hover:-translate-y-[1.5px] hover:shadow-[0_22px_55px_rgba(82,110,160,0.4)] hover:brightness-[1.02] active:translate-y-0 active:scale-[0.99] active:shadow-[0_10px_30px_rgba(82,110,160,0.35)] disabled:opacity-70 disabled:cursor-not-allowed"
                     >
                         {isSubmitting ? 'Đang đăng nhập...' : 'Đăng nhập'}
                     </button>

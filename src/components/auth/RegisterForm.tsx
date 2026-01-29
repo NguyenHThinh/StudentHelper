@@ -196,7 +196,7 @@ export default function RegisterForm() {
                     <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-full rounded-full border-none px-[1.1rem] py-[0.8rem] text-sm font-semibold text-slate-50 inline-flex items-center justify-center gap-1.5 cursor-pointer bg-gradient-to-br from-accent to-accent-dark shadow-[0_16px_35px_rgba(82,110,160,0.38)] transition-all duration-300 ease-out enabled:hover:-translate-y-[1.5px] enabled:hover:shadow-[0_22px_55px_rgba(82,110,160,0.4)] enabled:hover:brightness-[1.02] enabled:active:translate-y-0 enabled:active:scale-[0.99] enabled:active:shadow-[0_10px_30px_rgba(82,110,160,0.35)] disabled:cursor-not-allowed disabled:opacity-60"
+                        className="w-full rounded-full border-none px-[1.1rem] py-[0.8rem] text-sm font-semibold text-slate-50 inline-flex items-center justify-center gap-1.5 cursor-pointer bg-linear-to-br from-accent to-accent-dark shadow-[0_16px_35px_rgba(82,110,160,0.38)] transition-all duration-300 ease-out enabled:hover:-translate-y-[1.5px] enabled:hover:shadow-[0_22px_55px_rgba(82,110,160,0.4)] enabled:hover:brightness-[1.02] enabled:active:translate-y-0 enabled:active:scale-[0.99] enabled:active:shadow-[0_10px_30px_rgba(82,110,160,0.35)] disabled:cursor-not-allowed disabled:opacity-60"
                     >
                         {isSubmitting ? 'Đang đăng ký...' : 'Tạo tài khoản'}
                     </button>

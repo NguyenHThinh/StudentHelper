@@ -17,15 +17,6 @@ const timetableService = {
             }
             const response = await fetch(url, {
                 method: 'GET',
-                // Assuming cookies (HttpOnly) are handled automatically by browser for same-origin or explicit credentials
-                // If API is on different domain, need credentials: 'include'
-                // Based on auth.ts, it doesn't seem to set credentials: 'include'.
-                // Ideally, we should set it ensuring cookies are sent.
-                // However, auth.ts didn't have it either (it relies on response.json() maybe?)
-                // Wait, auth.ts login set cookie on response, but subsequent requests need to send it back.
-                // Standard fetch does NOT send cookies by default cross-origin.
-                // If Frontend and Backend are different ports (3000 vs 5000), they are cross-origin.
-                // WE MUST ADD credentials: 'include'.
                 credentials: 'include',
             });
             return response.json();

@@ -4,7 +4,7 @@ export default function CTASection() {
     return (
         <section className="py-24 px-6">
             <div className="max-w-4xl mx-auto">
-                <div className="relative overflow-hidden rounded-[3rem] bg-gradient-to-br from-primary via-primary-dark to-accent p-12 sm:p-16 text-center text-white">
+                <div className="relative overflow-hidden rounded-[3rem] bg-linear-to-br from-primary via-primary-dark to-accent p-12 sm:p-16 text-center text-white">
                     <div className="absolute top-0 right-0 w-64 h-64 bg-accent/30 rounded-full blur-3xl"></div>
                     <div className="absolute bottom-0 left-0 w-48 h-48 bg-highlight/20 rounded-full blur-2xl"></div>
 

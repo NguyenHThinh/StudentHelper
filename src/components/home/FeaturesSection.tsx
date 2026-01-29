@@ -21,9 +21,9 @@ export default function FeaturesSection() {
                     {/* Feature 1 */}
                     <Link href="/self-check" className="group">
                         <div className="relative h-full p-8 bg-white rounded-3xl border border-slate-100 shadow-lg shadow-slate-900/5 hover:shadow-2xl hover:shadow-accent/10 hover:-translate-y-2 transition-all duration-300">
-                            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-highlight/10 to-transparent rounded-bl-[100px]"></div>
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-linear-to-br from-highlight/10 to-transparent rounded-bl-[100px]"></div>
                             <div className="relative">
-                                <div className="w-16 h-16 bg-gradient-to-br from-highlight/20 to-highlight/5 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                                <div className="w-16 h-16 bg-linear-to-br from-highlight/20 to-highlight/5 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                                     <svg className="h-8 w-8 text-highlight" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
                                     </svg>
@@ -45,9 +45,9 @@ export default function FeaturesSection() {
                     {/* Feature 2 */}
                     <Link href="/support" className="group">
                         <div className="relative h-full p-8 bg-white rounded-3xl border border-slate-100 shadow-lg shadow-slate-900/5 hover:shadow-2xl hover:shadow-accent/10 hover:-translate-y-2 transition-all duration-300">
-                            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-accent/10 to-transparent rounded-bl-[100px]"></div>
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-linear-to-br from-accent/10 to-transparent rounded-bl-[100px]"></div>
                             <div className="relative">
-                                <div className="w-16 h-16 bg-gradient-to-br from-accent/20 to-accent/5 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                                <div className="w-16 h-16 bg-linear-to-br from-accent/20 to-accent/5 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                                     <Image src="/assets/support.png" alt="Hỗ trợ" width={40} height={40} className="rounded-lg" />
                                 </div>
                                 <h3 className="text-xl font-semibold text-primary mb-3">Liên hệ hỗ trợ</h3>
@@ -66,7 +66,7 @@ export default function FeaturesSection() {
 
                     {/* Feature 3 - Highlighted */}
                     <Link href="/ai-support" className="group">
-                        <div className="relative h-full p-8 bg-gradient-to-br from-accent to-accent-dark rounded-3xl shadow-xl shadow-accent/20 hover:shadow-2xl hover:shadow-accent/30 hover:-translate-y-2 transition-all duration-300 text-white overflow-hidden">
+                        <div className="relative h-full p-8 bg-linear-to-br from-accent to-accent-dark rounded-3xl shadow-xl shadow-accent/20 hover:shadow-2xl hover:shadow-accent/30 hover:-translate-y-2 transition-all duration-300 text-white overflow-hidden">
                             <div className="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full blur-2xl"></div>
                             <div className="absolute bottom-0 left-0 w-32 h-32 bg-highlight/20 rounded-full blur-xl"></div>
                             <div className="relative">

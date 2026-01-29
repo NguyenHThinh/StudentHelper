@@ -5,8 +5,8 @@ export default function HeroSection() {
     return (
         <section className="relative pt-32 pb-20 px-6 overflow-hidden">
             {/* Decorative blobs */}
-            <div className="absolute top-20 right-0 w-[500px] h-[500px] bg-gradient-to-br from-accent/20 to-highlight/20 rounded-full blur-3xl -z-10"></div>
-            <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gradient-to-tr from-highlight/15 to-accent/15 rounded-full blur-3xl -z-10"></div>
+            <div className="absolute top-20 right-0 w-[500px] h-[500px] bg-linear-to-br from-accent/20 to-highlight/20 rounded-full blur-3xl -z-10"></div>
+            <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-linear-to-tr from-highlight/15 to-accent/15 rounded-full blur-3xl -z-10"></div>
 
             <div className="max-w-7xl mx-auto">
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -23,7 +23,7 @@ export default function HeroSection() {
                         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
                             <span className="text-primary">Bạn không </span>
                             <span className="relative">
-                                <span className="bg-gradient-to-r from-accent via-accent-dark to-highlight bg-clip-text text-transparent">
+                                <span className="bg-linear-to-r from-accent via-accent-dark to-highlight bg-clip-text text-transparent">
                                     đơn độc
                                 </span>
                                 <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 200 12" fill="none">
@@ -48,7 +48,7 @@ export default function HeroSection() {
                         <div className="flex flex-col sm:flex-row gap-4">
                             <Link
                                 href="/ai-support"
-                                className="group relative inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-accent to-accent-dark text-white font-semibold rounded-2xl shadow-lg shadow-accent/25 hover:shadow-xl hover:shadow-accent/30 hover:-translate-y-0.5 transition-all"
+                                className="group relative inline-flex items-center justify-center gap-2 px-8 py-4 bg-linear-to-r from-accent to-accent-dark text-white font-semibold rounded-2xl shadow-lg shadow-accent/25 hover:shadow-xl hover:shadow-accent/30 hover:-translate-y-0.5 transition-all"
                             >
                                 <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
@@ -73,12 +73,12 @@ export default function HeroSection() {
                         {/* Stats */}
                         <div className="flex items-center gap-8 pt-4">
                             <div>
-                                <div className="text-3xl font-bold bg-gradient-to-r from-accent to-accent-dark bg-clip-text text-transparent">68%</div>
+                                <div className="text-3xl font-bold bg-linear-to-r from-accent to-accent-dark bg-clip-text text-transparent">68%</div>
                                 <p className="text-sm text-slate-500">Sinh viên năm nhất gặp khó khăn</p>
                             </div>
                             <div className="w-px h-12 bg-slate-200"></div>
                             <div>
-                                <div className="text-3xl font-bold bg-gradient-to-r from-highlight to-accent bg-clip-text text-transparent">24/7</div>
+                                <div className="text-3xl font-bold bg-linear-to-r from-highlight to-accent bg-clip-text text-transparent">24/7</div>
                                 <p className="text-sm text-slate-500">Hỗ trợ không giới hạn</p>
                             </div>
                         </div>
@@ -86,7 +86,7 @@ export default function HeroSection() {
 
                     {/* Right - Hero Image */}
                     <div className="relative lg:pl-8">
-                        <div className="absolute inset-0 bg-gradient-to-br from-accent/10 to-highlight/10 rounded-[3rem] -rotate-6 scale-95"></div>
+                        <div className="absolute inset-0 bg-linear-to-br from-accent/10 to-highlight/10 rounded-[3rem] -rotate-6 scale-95"></div>
                         <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl shadow-slate-900/10 border-4 border-white">
                             <Image
                                 src="/assets/hero.png"

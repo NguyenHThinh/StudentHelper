@@ -16,8 +16,8 @@ export default function MessageBubble({ message }: MessageBubbleProps) {
                 {/* Avatar */}
                 <div
                     className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full ${message.role === "user"
-                        ? "bg-gradient-to-br from-primary to-primary-dark"
-                        : "bg-gradient-to-br from-accent to-accent-dark"
+                        ? "bg-linear-to-br from-primary to-primary-dark"
+                        : "bg-linear-to-br from-accent to-accent-dark"
                         }`}
                 >
                     {message.role === "user" ? (
@@ -34,7 +34,7 @@ export default function MessageBubble({ message }: MessageBubbleProps) {
                 {/* Message Bubble */}
                 <div
                     className={`rounded-2xl px-5 py-3.5 ${message.role === "user"
-                        ? "bg-gradient-to-br from-primary to-primary-dark text-white"
+                        ? "bg-linear-to-br from-primary to-primary-dark text-white"
                         : "bg-white shadow-[0_4px_20px_rgba(0,0,0,0.08)]"
                         }`}
                 >
