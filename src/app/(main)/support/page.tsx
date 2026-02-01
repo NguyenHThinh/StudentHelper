@@ -1,4 +1,3 @@
-import Header from "@/components/layout/Header";
 import SupportChannels from "@/components/support/SupportChannels";
 import FAQSection from "@/components/support/FAQSection";
 import ContactForm from "@/components/support/ContactForm";
@@ -15,7 +14,6 @@ export default function SupportPage() {
                 </div>
 
                 <div className="relative mx-auto max-w-6xl">
-                    {/* Header */}
                     <div className="mb-12 text-center">
                         <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-accent/10 px-4 py-2 text-sm font-medium text-accent">
                             <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
