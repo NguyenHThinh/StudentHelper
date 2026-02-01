@@ -3,13 +3,18 @@
 import { User } from "@/types/user";
 import { createContext, useContext, useState } from "react";
 
-const UserContext = createContext<{ user: User | null, setUser: (user: User | null) => void }>({ user: null, setUser: () => { } });
+const UserContext = createContext<{ user: User | null, setUser: (user: User | null) => void, isAuthLoading: boolean, setIsAuthLoading: (isAuthLoading: boolean) => void }>({
+    user: null,
+    setUser: () => { },
+    isAuthLoading: true,
+    setIsAuthLoading: () => { }
+});
 
 export const UserProvider = ({ children }: { children: React.ReactNode }) => {
     const [user, setUser] = useState<User | null>(null);
+    const [isAuthLoading, setIsAuthLoading] = useState(true);
     return (
-        <UserContext.Provider value={{ user, setUser }
-        }>
+        <UserContext.Provider value={{ user, setUser, isAuthLoading, setIsAuthLoading }}>
             {children}
         </UserContext.Provider>
     );

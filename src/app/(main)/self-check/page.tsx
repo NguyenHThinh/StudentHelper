@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import Header from "@/components/layout/Header";
 import QuizCard, { Question } from "@/components/self-check/QuizCard";
 import ResultCard, { ResultData } from "@/components/self-check/ResultCard";
 
@@ -110,9 +109,7 @@ export default function SelfCheckPage() {
 
   return (
     <div className="min-h-screen bg-secondary font-sans">
-      {/* Header */}
-      <Header />
-      
+
 
       {/* Main Content */}
       <main className="relative overflow-hidden px-6 py-12 pt-24 lg:py-26 sm:px-16 sm:py-16">
@@ -123,7 +120,6 @@ export default function SelfCheckPage() {
         </div>
 
         <div className="relative mx-auto max-w-2xl">
-          {/* Header */}
           <div className="mb-10 text-center">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-highlight/10 px-4 py-2 text-sm font-medium text-highlight">
               <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
