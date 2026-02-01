@@ -3,8 +3,7 @@
 import { useUser } from "@/contexts/UserContext";
 import authService from "@/services/auth";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const navLinks = [
     { href: "/timetable", label: "Thời khóa biểu" },
@@ -15,7 +14,19 @@ const navLinks = [
 
 export default function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const { user, setUser } = useUser();
+    const { user, setUser, isAuthLoading, setIsAuthLoading } = useUser();
+
+    useEffect(() => {
+        const fetchUser = async () => {
+            const response = await authService.getProfile();
+            if (response) {
+                setUser(response.data);
+            }
+            setIsAuthLoading(false)
+        };
+        setIsAuthLoading(true)
+        fetchUser();
+    }, []);
 
     const handleLogout = async () => {
         const response = await authService.logout();
@@ -60,8 +71,10 @@ export default function Header() {
                         ))}
                     </div>
 
-                    {user ? (
-                        <div className="flex items-center gap-3">
+                    {isAuthLoading ? (
+                        <div className="hidden md:block h-10 bg-slate-200 w-full rounded-lg max-w-[290px] animate-pulse"></div>
+                    ) : user ? (
+                        <div className="hidden md:flex items-center justify-end gap-3 min-w-[290px]">
                             <span className="px-4 py-2 text-sm font-medium text-slate-600">
                                 {user.name}
                             </span>
@@ -70,7 +83,7 @@ export default function Header() {
                             </button>
                         </div>
                     ) : (
-                        <div className="hidden items-center gap-3 md:flex">
+                        <div className="hidden items-center gap-3 md:flex min-w-[290px]">
                             <Link
                                 href="/login"
                                 className="px-5 py-2.5 text-sm font-medium text-slate-600 hover:text-accent transition-colors"

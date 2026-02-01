@@ -1,9 +1,11 @@
+import axiosInstance from "@/lib/axios";
+
 export interface TimetableEntry {
     _id?: string;
     subject: string;
     location: string;
-    startTime: string; // ISO string
-    endTime: string; // ISO string
+    startTime: string;
+    endTime: string;
     note?: string;
     userId?: string;
 }
@@ -11,48 +13,41 @@ export interface TimetableEntry {
 const timetableService = {
     getEntries: async (start?: string, end?: string) => {
         try {
-            let url = `${process.env.NEXT_PUBLIC_API_URL}/timetable`;
+            let url = '/timetable';
             if (start && end) {
                 url += `?start=${start}&end=${end}`;
             }
-            const response = await fetch(url, {
-                method: 'GET',
-                credentials: 'include',
-            });
-            return response.json();
+            const response = await axiosInstance.get(url);
+            return response.data;
         } catch (error: any) {
-            console.error(error);
-            return { success: false, message: error?.message || 'Error fetching timetable' };
+            return error.response?.data || { success: false, message: 'Error fetching timetable' };
         }
     },
 
     createEntry: async (entry: Omit<TimetableEntry, '_id' | 'userId'>) => {
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/timetable`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(entry),
-                credentials: 'include',
-            });
-            return response.json();
+            const response = await axiosInstance.post('/timetable', entry);
+            return response.data;
         } catch (error: any) {
-            console.error(error);
-            return { success: false, message: error?.message || 'Error creating entry' };
+            return error.response?.data || { success: false, message: 'Error creating entry' };
         }
     },
 
     deleteEntry: async (id: string) => {
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/timetable/${id}`, {
-                method: 'DELETE',
-                credentials: 'include',
-            });
-            return response.json();
+            const response = await axiosInstance.delete(`/timetable/${id}`);
+            return response.data;
         } catch (error: any) {
-            console.error(error);
-            return { success: false, message: error?.message || 'Error deleting entry' };
+            return error.response?.data || { success: false, message: 'Error deleting entry' };
+        }
+    },
+
+    updateEntry: async (id: string, entry: Omit<TimetableEntry, '_id' | 'userId'>) => {
+        try {
+            const response = await axiosInstance.put(`/timetable/${id}`, entry);
+            return response.data;
+        } catch (error: any) {
+            return error.response?.data || { success: false, message: 'Error updating entry' };
         }
     }
 };

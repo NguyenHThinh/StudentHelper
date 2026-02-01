@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import MessageBubble, { Message } from "./MessageBubble";
 import SuggestedPrompts from "./SuggestedPrompts";
 import ChatInput from "./ChatInput";
+import aiService, { ChatHistoryEntry } from "@/services/ai";
 
 const welcomeMessage: Message = {
     id: 0,
@@ -19,38 +20,11 @@ const suggestedPrompts = [
     "Mình lo lắng về điểm số",
 ];
 
-// Mock AI responses
-const aiResponses: Record<string, string> = {
-    default: "Mình hiểu những gì bạn đang trải qua. Điều quan trọng là bạn đã chia sẻ với mình. Bạn có thể kể thêm về tình huống cụ thể không? Mình muốn hiểu rõ hơn để có thể hỗ trợ bạn tốt nhất.",
-    "áp lực": "Áp lực học tập là điều rất phổ biến với sinh viên. Đừng lo, có một số cách mình muốn gợi ý cho bạn:\n\n1. **Chia nhỏ công việc**: Thay vì nhìn tổng thể, hãy chia thành các phần nhỏ dễ quản lý hơn.\n\n2. **Nghỉ ngơi hợp lý**: Não cần thời gian để xử lý thông tin. Hãy áp dụng quy tắc Pomodoro: học 25 phút, nghỉ 5 phút.\n\n3. **Đừng ngại nhờ giúp đỡ**: Bạn bè, thầy cô, hoặc trung tâm hỗ trợ sinh viên đều sẵn sàng giúp bạn.\n\nBạn muốn mình đi sâu hơn vào phần nào không?",
-    "thời gian": "Quản lý thời gian là một kỹ năng quan trọng! Đây là một số tips:\n\n📅 **Lập kế hoạch hàng tuần**: Dành 15 phút mỗi Chủ nhật để lên kế hoạch cho tuần.\n\n⏰ **Xác định giờ vàng**: Tìm khoảng thời gian bạn tập trung tốt nhất và dành cho các môn khó.\n\n📝 **To-do list**: Viết ra 3 việc quan trọng nhất cần làm mỗi ngày.\n\n🚫 **Giảm xao nhãng**: Tắt thông báo điện thoại khi học.\n\nBạn đang gặp khó khăn cụ thể ở điểm nào nhất?",
-    "cô đơn": "Cảm giác cô đơn khi mới vào đại học là điều hoàn toàn bình thường, đặc biệt khi môi trường hoàn toàn mới. Bạn không phải là người duy nhất cảm thấy như vậy.\n\n💡 Một số gợi ý:\n\n• Tham gia các câu lạc bộ theo sở thích\n• Chủ động bắt chuyện với bạn ngồi cạnh\n• Tham gia các nhóm học tập\n• Đừng ngại là người mở lời đầu tiên\n\nBạn đã thử tham gia hoạt động nào chưa? Mình có thể gợi ý thêm nếu bạn muốn.",
-    "điểm": "Lo lắng về điểm số là điều dễ hiểu. Tuy nhiên, mình muốn nhắc bạn rằng:\n\n🌟 Điểm số không định nghĩa giá trị của bạn\n📈 Thất bại là bài học, không phải kết thúc\n💪 Nỗ lực quan trọng hơn kết quả\n\nĐể cải thiện điểm, bạn có thể:\n1. Xem lại phương pháp học hiện tại\n2. Tìm hiểu phong cách học phù hợp với mình\n3. Nhờ sự hỗ trợ từ thầy cô hoặc trợ giảng\n\nBạn có muốn chia sẻ cụ thể về môn nào đang gặp khó khăn không?",
-};
-
-function getAIResponse(message: string): string {
-    const lowerMessage = message.toLowerCase();
-
-    if (lowerMessage.includes("áp lực") || lowerMessage.includes("stress") || lowerMessage.includes("bài tập")) {
-        return aiResponses["áp lực"];
-    }
-    if (lowerMessage.includes("thời gian") || lowerMessage.includes("quản lý")) {
-        return aiResponses["thời gian"];
-    }
-    if (lowerMessage.includes("cô đơn") || lowerMessage.includes("một mình") || lowerMessage.includes("bạn bè")) {
-        return aiResponses["cô đơn"];
-    }
-    if (lowerMessage.includes("điểm") || lowerMessage.includes("thi") || lowerMessage.includes("thành tích")) {
-        return aiResponses["điểm"];
-    }
-
-    return aiResponses["default"];
-}
-
 export default function ChatContainer() {
     const [messages, setMessages] = useState<Message[]>([welcomeMessage]);
     const [inputValue, setInputValue] = useState("");
     const [isTyping, setIsTyping] = useState(false);
+    const [loadingHistory, setLoadingHistory] = useState(true);
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
 
@@ -62,11 +36,44 @@ export default function ChatContainer() {
         scrollToBottom();
     }, [messages, isTyping]);
 
+    useEffect(() => {
+        const fetchHistory = async () => {
+            setLoadingHistory(true);
+            const response = await aiService.getHistory();
+            if (response.success && response.data?.history) {
+                const historyMessages: Message[] = [];
+                const reversedHistory = [...response.data.history].reverse();
+
+                reversedHistory.forEach((entry: ChatHistoryEntry, index) => {
+                    historyMessages.push({
+                        id: index * 2 + 1,
+                        role: "user",
+                        content: entry.prompt,
+                        timestamp: new Date(entry.createdAt)
+                    });
+                    historyMessages.push({
+                        id: index * 2 + 2,
+                        role: "assistant",
+                        content: entry.response,
+                        timestamp: new Date(entry.createdAt)
+                    });
+                });
+
+                if (historyMessages.length > 0) {
+                    setMessages([welcomeMessage, ...historyMessages]);
+                }
+            }
+            setLoadingHistory(false);
+        };
+
+        fetchHistory();
+    }, []);
+
     const sendMessage = async (content: string) => {
         if (!content.trim()) return;
 
         const userMessage: Message = {
-            id: messages.length,
+            id: messages.length + 1,
             role: "user",
             content: content.trim(),
             timestamp: new Date(),
@@ -76,17 +83,25 @@ export default function ChatContainer() {
         setInputValue("");
         setIsTyping(true);
 
-        // Simulate AI thinking
-        await new Promise((resolve) => setTimeout(resolve, 1000 + Math.random() * 1000));
+        const response = await aiService.chat(content);
+
+        setIsTyping(false);
+
+        let aiContent = "Xin lỗi, mình đang gặp sự cố kết nối. Vui lòng thử lại sau.";
+
+        if (response.success) {
+            aiContent = response.data.response;
+        } else {
+            console.error("Chat error:", response.message);
+        }
 
         const aiResponse: Message = {
-            id: messages.length + 1,
+            id: messages.length + 2,
             role: "assistant",
-            content: getAIResponse(content),
+            content: aiContent,
             timestamp: new Date(),
         };
 
-        setIsTyping(false);
         setMessages((prev) => [...prev, aiResponse]);
     };
 
@@ -104,6 +119,10 @@ export default function ChatContainer() {
             {/* Messages Area */}
             <div className="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
                 <div className="mx-auto max-w-3xl space-y-6">
+                    {loadingHistory && (
+                        <div className="text-center text-slate-500 text-sm py-4">Đang tải lịch sử trò chuyện...</div>
+                    )}
+
                     {messages.map((message) => (
                         <MessageBubble key={message.id} message={message} />
                     ))}
@@ -133,7 +152,7 @@ export default function ChatContainer() {
             </div>
 
             {/* Suggested Prompts */}
-            {messages.length <= 1 && (
+            {messages.length <= 1 && !loadingHistory && (
                 <SuggestedPrompts prompts={suggestedPrompts} onSelect={handleSuggestedPrompt} />
             )}
 
