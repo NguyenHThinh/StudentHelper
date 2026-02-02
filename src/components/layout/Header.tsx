@@ -1,7 +1,6 @@
 "use client";
 
-import { useUser } from "@/contexts/UserContext";
-import authService from "@/services/auth";
+import { useAuth } from "@/contexts/AuthContext";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -14,26 +13,11 @@ const navLinks = [
 
 export default function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const { user, setUser, isAuthLoading, setIsAuthLoading } = useUser();
-
-    useEffect(() => {
-        const fetchUser = async () => {
-            const response = await authService.getProfile();
-            if (response) {
-                setUser(response.data);
-            }
-            setIsAuthLoading(false)
-        };
-        setIsAuthLoading(true)
-        fetchUser();
-    }, []);
+    const { user, logout, isLoading } = useAuth();
 
     const handleLogout = async () => {
-        const response = await authService.logout();
-        if (response) {
-            setUser(null);
-        }
-    }
+        await logout();
+    };
 
     return (
         <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-white/70 border-b border-white/20">
@@ -71,10 +55,10 @@ export default function Header() {
                         ))}
                     </div>
 
-                    {isAuthLoading ? (
-                        <div className="hidden md:block h-10 bg-slate-200 w-full rounded-lg max-w-[290px] animate-pulse"></div>
+                    {isLoading ? (
+                        <div className="hidden md:block h-10 bg-slate-200 w-full rounded-lg lg:max-w-[290px] animate-pulse"></div>
                     ) : user ? (
-                        <div className="hidden md:flex items-center justify-end gap-3 min-w-[290px]">
+                        <div className="hidden md:flex lg:min-w-[290px] items-center justify-end gap-3">
                             <span className="px-4 py-2 text-sm font-medium text-slate-600">
                                 {user.name}
                             </span>
@@ -83,7 +67,7 @@ export default function Header() {
                             </button>
                         </div>
                     ) : (
-                        <div className="hidden items-center gap-3 md:flex min-w-[290px]">
+                        <div className="hidden items-center gap-3 md:flex lg:min-w-[290px]">
                             <Link
                                 href="/login"
                                 className="px-5 py-2.5 text-sm font-medium text-slate-600 hover:text-accent transition-colors"
@@ -130,14 +114,31 @@ export default function Header() {
                                 {link.label}
                             </Link>
                         ))}
-                        <div className="flex gap-3 pt-3 border-t border-slate-200/50">
-                            <Link href="/login" onClick={() => setMobileMenuOpen(false)} className="flex-1 py-2.5 text-center text-sm font-medium text-slate-600 rounded-xl border border-slate-200 hover:bg-slate-50">
-                                Đăng nhập
-                            </Link>
-                            <Link href="/register" onClick={() => setMobileMenuOpen(false)} className="flex-1 py-2.5 text-center text-sm font-semibold text-white bg--to-r from-accent to-accent-dark rounded-xl">
-                                Đăng ký
-                            </Link>
-                        </div>
+                        {user ? (
+                            <div className="pt-3 border-t border-slate-200/50 flex flex-col gap-2">
+                                <span className="px-4 py-2 text-sm font-medium text-slate-600 italic">
+                                    Chào, <strong className="capitalize">{user.name}</strong>
+                                </span>
+                                <button
+                                    onClick={() => {
+                                        handleLogout();
+                                        setMobileMenuOpen(false);
+                                    }}
+                                    className="w-full py-2.5 text-center text-sm font-semibold text-white bg-linear-to-r from-accent to-accent-dark rounded-xl"
+                                >
+                                    Đăng xuất
+                                </button>
+                            </div>
+                        ) : (
+                            <div className="flex gap-3 pt-3 border-t border-slate-200/50">
+                                <Link href="/login" onClick={() => setMobileMenuOpen(false)} className="flex-1 py-2.5 text-center text-sm font-medium text-slate-600 rounded-xl border border-slate-200 hover:bg-slate-50">
+                                    Đăng nhập
+                                </Link>
+                                <Link href="/register" onClick={() => setMobileMenuOpen(false)} className="flex-1 py-2.5 text-center text-sm font-semibold text-white bg-linear-to-r from-accent to-accent-dark rounded-xl">
+                                    Đăng ký
+                                </Link>
+                            </div>
+                        )}
                     </div>
                 )}
             </nav>

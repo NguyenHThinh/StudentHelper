@@ -8,33 +8,48 @@ const axiosInstance = axios.create({
     },
 });
 
+// Token getter will be set by AuthProvider
+let getAccessToken: (() => string | null) | null = null;
+
+export const setTokenGetter = (getter: () => string | null) => {
+    getAccessToken = getter;
+};
+
+// Request interceptor - attach Authorization header
+axiosInstance.interceptors.request.use(
+    (config) => {
+        const token = getAccessToken?.();
+        if (token) {
+            config.headers.Authorization = `Bearer ${token}`;
+        }
+        return config;
+    },
+    (error) => Promise.reject(error)
+);
+
 let isRefreshing = false;
 let refreshSubscribers: ((token: string) => void)[] = [];
 
-// Helper to add subscribers to retry queue
 const subscribeTokenRefresh = (cb: (token: string) => void) => {
     refreshSubscribers.push(cb);
 };
 
-// Helper to notify subscribers on new token
 const onRefreshed = (token: string) => {
     refreshSubscribers.map((cb) => cb(token));
     refreshSubscribers = [];
 };
 
+// Response interceptor - handle 401 and token refresh
 axiosInstance.interceptors.response.use(
-    (response) => {
-        return response;
-    },
+    (response) => response,
     async (error) => {
         const originalRequest = error.config;
 
-        if (error.response?.status === 401 && error.response?.data?.message === 'No token provided' && !originalRequest._retry) {
+        if (error.response?.status === 401 && !originalRequest._retry) {
             if (isRefreshing) {
                 return new Promise((resolve) => {
                     subscribeTokenRefresh((token) => {
-                        // We don't actually need to attach the token if using cookies,
-                        // but we wait for the cookie to be set.
+                        originalRequest.headers.Authorization = `Bearer ${token}`;
                         resolve(axiosInstance(originalRequest));
                     });
                 });
@@ -44,27 +59,30 @@ axiosInstance.interceptors.response.use(
             isRefreshing = true;
 
             try {
-                // Call refresh endpoint
-                // We use a clean axios instance to avoid circular loops if refresh itself fails 
-                // (though regular instance should work if logic is sound, safety first)
-                await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/refresh`, {}, { withCredentials: true });
+                const response = await axios.post(
+                    `${process.env.NEXT_PUBLIC_API_URL}/auth/refresh`,
+                    {},
+                    { withCredentials: true }
+                );
+
+                const { accessToken } = response.data.data;
+
+                // Emit event to update Context
+                window.dispatchEvent(new CustomEvent('token-refreshed', {
+                    detail: { accessToken }
+                }));
 
                 isRefreshing = false;
-                onRefreshed('refreshed'); // Token is in HTTP-only cookie, so just signal completion
+                onRefreshed(accessToken);
 
+                originalRequest.headers.Authorization = `Bearer ${accessToken}`;
                 return axiosInstance(originalRequest);
             } catch (refreshError) {
                 isRefreshing = false;
                 refreshSubscribers = [];
-                // If refresh fails, we should logout.
-                // Since this is a library file, we can't easily access React Context or Router here.
-                // We'll trust the auth service or component calling this to handle the final failure,
-                // OR we can force a redirect if we really want to be aggressive.
 
-                // For now, let's call the logout API to be clean and then reject
-                try {
-                    await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/logout`, {}, { withCredentials: true });
-                } catch (e) { /* ignore */ }
+                // Emit logout event
+                window.dispatchEvent(new Event('auth-logout'));
 
                 return Promise.reject(refreshError);
             }

@@ -88,7 +88,7 @@ export default function RegisterForm() {
                             {...register("name")}
                             id="name"
                             type="text"
-                            className={`w-full rounded-full border ${errors.name ? 'border-red-500' : 'border-slate-900/6'} bg-white/95 pl-10 pr-[1.1rem] py-[0.7rem] text-sm text-slate-900 placeholder:text-slate-400 transition-all duration-300 ease-out focus:-translate-y-px focus:border-accent/90 focus:bg-white focus:outline-none focus:ring-2 focus:ring-accent/25 focus:shadow-[0_0_0_1px_rgba(108,142,191,0.5),0_18px_40px_rgba(15,23,42,0.14)]`}
+                            className={`w-full rounded-full border ${errors.name ? 'border-red-500' : 'border-slate-900/6'} bg-white/95 pl-10 pr-[1.1rem] py-[0.7rem] text-base text-slate-900 placeholder:text-slate-400 transition-all duration-300 ease-out focus:-translate-y-px focus:border-accent/90 focus:bg-white focus:outline-none focus:ring-2 focus:ring-accent/25 focus:shadow-[0_0_0_1px_rgba(108,142,191,0.5),0_18px_40px_rgba(15,23,42,0.14)]`}
                             placeholder="VD: Nguyễn Minh Anh"
                         />
                     </div>
@@ -112,7 +112,7 @@ export default function RegisterForm() {
                             {...register("email")}
                             id="email"
                             type="email"
-                            className={`w-full rounded-full border ${errors.email ? 'border-red-500' : 'border-slate-900/6'} bg-white/95 pl-10 pr-[1.1rem] py-[0.7rem] text-sm text-slate-900 placeholder:text-slate-400 transition-all duration-300 ease-out focus:-translate-y-px focus:border-accent/90 focus:bg-white focus:outline-none focus:ring-2 focus:ring-accent/25 focus:shadow-[0_0_0_1px_rgba(108,142,191,0.5),0_18px_40px_rgba(15,23,42,0.14)]`}
+                            className={`w-full rounded-full border ${errors.email ? 'border-red-500' : 'border-slate-900/6'} bg-white/95 pl-10 pr-[1.1rem] py-[0.7rem] text-base text-slate-900 placeholder:text-slate-400 transition-all duration-300 ease-out focus:-translate-y-px focus:border-accent/90 focus:bg-white focus:outline-none focus:ring-2 focus:ring-accent/25 focus:shadow-[0_0_0_1px_rgba(108,142,191,0.5),0_18px_40px_rgba(15,23,42,0.14)]`}
                             placeholder="ban@example.com"
                         />
                     </div>
@@ -136,7 +136,7 @@ export default function RegisterForm() {
                             {...register("password")}
                             id="password"
                             type="password"
-                            className={`w-full rounded-full border ${errors.password ? 'border-red-500' : 'border-slate-900/6'} bg-white/95 pl-10 pr-[1.1rem] py-[0.7rem] text-sm text-slate-900 placeholder:text-slate-400 transition-all duration-300 ease-out focus:-translate-y-px focus:border-accent/90 focus:bg-white focus:outline-none focus:ring-2 focus:ring-accent/25 focus:shadow-[0_0_0_1px_rgba(108,142,191,0.5),0_18px_40px_rgba(15,23,42,0.14)]`}
+                            className={`w-full rounded-full border ${errors.password ? 'border-red-500' : 'border-slate-900/6'} bg-white/95 pl-10 pr-[1.1rem] py-[0.7rem] text-base text-slate-900 placeholder:text-slate-400 transition-all duration-300 ease-out focus:-translate-y-px focus:border-accent/90 focus:bg-white focus:outline-none focus:ring-2 focus:ring-accent/25 focus:shadow-[0_0_0_1px_rgba(108,142,191,0.5),0_18px_40px_rgba(15,23,42,0.14)]`}
                             placeholder="Tạo mật khẩu mạnh"
                         />
                     </div>
@@ -160,7 +160,7 @@ export default function RegisterForm() {
                             {...register("confirmPassword")}
                             id="confirmPassword"
                             type="password"
-                            className={`w-full rounded-full border ${errors.confirmPassword ? 'border-red-500' : 'border-slate-900/6'} bg-white/95 pl-10 pr-[1.1rem] py-[0.7rem] text-sm text-slate-900 placeholder:text-slate-400 transition-all duration-300 ease-out focus:-translate-y-px focus:border-accent/90 focus:bg-white focus:outline-none focus:ring-2 focus:ring-accent/25 focus:shadow-[0_0_0_1px_rgba(108,142,191,0.5),0_18px_40px_rgba(15,23,42,0.14)]`}
+                            className={`w-full rounded-full border ${errors.confirmPassword ? 'border-red-500' : 'border-slate-900/6'} bg-white/95 pl-10 pr-[1.1rem] py-[0.7rem] text-base text-slate-900 placeholder:text-slate-400 transition-all duration-300 ease-out focus:-translate-y-px focus:border-accent/90 focus:bg-white focus:outline-none focus:ring-2 focus:ring-accent/25 focus:shadow-[0_0_0_1px_rgba(108,142,191,0.5),0_18px_40px_rgba(15,23,42,0.14)]`}
                             placeholder="Nhập lại mật khẩu"
                         />
                     </div>

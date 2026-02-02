@@ -113,7 +113,7 @@ export default function TimetableForm({ onSuccess, initialDate, initialData }: P
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
             {serverError && (
                 <div className="p-4 text-sm text-red-600 bg-red-50 rounded-xl border border-red-200 flex items-center gap-2">
-                    <svg className="h-5 w-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="h-5 w-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                     {serverError}
@@ -124,7 +124,7 @@ export default function TimetableForm({ onSuccess, initialDate, initialData }: P
                 <label className="block text-sm font-semibold text-primary">Môn học</label>
                 <input
                     {...register("subject")}
-                    className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm focus:ring-2 focus:ring-accent/50 focus:border-accent outline-none transition-all bg-white hover:border-slate-400"
+                    className="w-full rounded-xl border border-slate-300 px-4 py-3 text-base focus:ring-2 focus:ring-accent/50 focus:border-accent outline-none transition-all bg-white hover:border-slate-400"
                     placeholder="VD: Toán rời rạc"
                     autoFocus={!initialData}
                 />
@@ -135,7 +135,7 @@ export default function TimetableForm({ onSuccess, initialDate, initialData }: P
                 <label className="block text-sm font-semibold text-primary">Địa điểm</label>
                 <input
                     {...register("location")}
-                    className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm focus:ring-2 focus:ring-accent/50 focus:border-accent outline-none transition-all bg-white hover:border-slate-400"
+                    className="w-full rounded-xl border border-slate-300 px-4 py-3 text-base focus:ring-2 focus:ring-accent/50 focus:border-accent outline-none transition-all bg-white hover:border-slate-400"
                     placeholder="VD: Phòng A202"
                 />
                 {errors.location && <p className="text-xs text-red-500 mt-1">{errors.location.message}</p>}
@@ -146,18 +146,18 @@ export default function TimetableForm({ onSuccess, initialDate, initialData }: P
                 <input
                     type="date"
                     {...register("date")}
-                    className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm focus:ring-2 focus:ring-accent/50 focus:border-accent outline-none transition-all bg-white hover:border-slate-400"
+                    className="w-full rounded-xl border border-slate-300 px-4 py-3 text-base focus:ring-2 focus:ring-accent/50 focus:border-accent outline-none transition-all bg-white hover:border-slate-400"
                 />
                 {errors.date && <p className="text-xs text-red-500 mt-1">{errors.date.message}</p>}
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
                     <label className="block text-sm font-semibold text-primary">Bắt đầu</label>
                     <input
                         type="time"
                         {...register("startTime")}
-                        className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm focus:ring-2 focus:ring-accent/50 focus:border-accent outline-none transition-all bg-white hover:border-slate-400"
+                        className="w-full rounded-xl border border-slate-300 px-4 py-2.5 sm:py-3 text-base focus:ring-2 focus:ring-accent/50 focus:border-accent outline-none transition-all bg-white hover:border-slate-400"
                     />
                     {errors.startTime && <p className="text-xs text-red-500 mt-1">{errors.startTime.message}</p>}
                 </div>
@@ -167,7 +167,7 @@ export default function TimetableForm({ onSuccess, initialDate, initialData }: P
                     <input
                         type="time"
                         {...register("endTime")}
-                        className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm focus:ring-2 focus:ring-accent/50 focus:border-accent outline-none transition-all bg-white hover:border-slate-400"
+                        className="w-full rounded-xl border border-slate-300 px-4 py-2.5 sm:py-3 text-sm focus:ring-2 focus:ring-accent/50 focus:border-accent outline-none transition-all bg-white hover:border-slate-400"
                     />
                     {errors.endTime && <p className="text-xs text-red-500 mt-1">{errors.endTime.message}</p>}
                 </div>
@@ -177,17 +177,17 @@ export default function TimetableForm({ onSuccess, initialDate, initialData }: P
                 <label className="block text-sm font-semibold text-primary">Ghi chú <span className="text-slate-400 font-normal">(Tùy chọn)</span></label>
                 <textarea
                     {...register("note")}
-                    className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm focus:ring-2 focus:ring-accent/50 focus:border-accent outline-none transition-all bg-white hover:border-slate-400 resize-none"
+                    className="w-full rounded-xl border border-slate-300 px-4 py-2.5 sm:py-3 text-base focus:ring-2 focus:ring-accent/50 focus:border-accent outline-none transition-all bg-white hover:border-slate-400 resize-none font-sans"
                     rows={3}
                     placeholder="Ghi chú thêm về buổi học..."
                 />
             </div>
 
-            <div className="pt-3">
+            <div className="pt-2 sm:pt-4">
                 <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full rounded-xl bg-linear-to-r from-accent to-accent-dark text-white py-3.5 text-sm font-semibold hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-md shadow-accent/30"
+                    className="w-full rounded-xl bg-linear-to-r from-accent to-accent-dark text-white py-3 sm:py-4 text-sm sm:text-base font-semibold hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-md shadow-accent/30"
                 >
                     {isSubmitting ? (
                         <>
@@ -195,22 +195,22 @@ export default function TimetableForm({ onSuccess, initialDate, initialData }: P
                                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                             </svg>
-                            {initialData ? 'Đang cập nhật...' : 'Đang thêm...'}
+                            <span className="text-sm">{initialData ? 'Đang cập nhật...' : 'Đang thêm...'}</span>
                         </>
                     ) : (
                         <>
                             {initialData ? (
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="sm:w-5 sm:h-5">
                                     <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
                                     <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
                                 </svg>
                             ) : (
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="sm:w-5 sm:h-5">
                                     <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                                     <polyline points="22 4 12 14.01 9 11.01"></polyline>
                                 </svg>
                             )}
-                            {initialData ? 'Cập nhật lịch học' : 'Thêm lịch học'}
+                            <span>{initialData ? 'Cập nhật lịch học' : 'Thêm lịch học'}</span>
                         </>
                     )}
                 </button>

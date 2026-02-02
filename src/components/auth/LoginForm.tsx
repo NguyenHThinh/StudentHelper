@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { useUser } from "@/contexts/UserContext";
+import { useAuth } from "@/contexts/AuthContext";
 
 const loginSchema = z.object({
     email: z.string().email("Email không hợp lệ"),
@@ -18,7 +18,7 @@ const loginSchema = z.object({
 type LoginSchema = z.infer<typeof loginSchema>;
 
 export default function LoginForm() {
-    const { setUser } = useUser();
+    const { setAccessToken, setUser: setAuthUser } = useAuth();
     const router = useRouter();
     const [rememberMe, setRememberMe] = useState(true);
     const [serverError, setServerError] = useState<string | null>(null);
@@ -34,26 +34,18 @@ export default function LoginForm() {
     const onSubmit = async (data: LoginSchema) => {
         setServerError(null);
         const response = await authService.login(data.email, data.password);
-        if (response.message === 'Logged in successfully' || response.access_token || response.accessToken) {
-            if (response.message === 'Logged in successfully') {
-                setUser({ name: response.data.name, email: data.email });
-                router.push('/');
-            } else {
-                setServerError(response.message || 'Đăng nhập thất bại');
-            }
+
+        if (response.success && response.data?.accessToken) {
+            // Store accessToken in Context (memory)
+            setAccessToken(response.data.accessToken);
+
+            // Store user info in both contexts
+            const userData = { name: response.data.name, email: response.data.email };
+            setAuthUser(userData);
+
+            router.push('/');
         } else {
-            // Handle case where authService catches network error
-            if (response.success === false) {
-                setServerError(response.message);
-            } else {
-                // Fallback
-                if (response.message === 'Logged in successfully') {
-                    setUser({ name: response.name, email: data.email });
-                    router.push('/');
-                } else {
-                    setServerError(response.message || 'Đăng nhập thất bại');
-                }
-            }
+            setServerError(response.message || 'Đăng nhập thất bại');
         }
     };
 
@@ -97,7 +89,7 @@ export default function LoginForm() {
                             {...register("email")}
                             id="email"
                             type="email"
-                            className={`w-full rounded-full border ${errors.email ? 'border-red-500' : 'border-slate-900/6'} bg-white/95 pl-10 pr-[1.1rem] py-[0.7rem] text-sm text-slate-900 placeholder:text-slate-400 transition-all duration-300 ease-out focus:-translate-y-px focus:border-accent/90 focus:bg-white focus:outline-none focus:ring-2 focus:ring-accent/25 focus:shadow-[0_0_0_1px_rgba(108,142,191,0.5),0_18px_40px_rgba(15,23,42,0.14)]`}
+                            className={`w-full rounded-full border ${errors.email ? 'border-red-500' : 'border-slate-900/6'} bg-white/95 pl-10 pr-[1.1rem] py-[0.7rem] text-base text-slate-900 placeholder:text-slate-400 transition-all duration-300 ease-out focus:-translate-y-px focus:border-accent/90 focus:bg-white focus:outline-none focus:ring-2 focus:ring-accent/25 focus:shadow-[0_0_0_1px_rgba(108,142,191,0.5),0_18px_40px_rgba(15,23,42,0.14)]`}
                             placeholder="Nhập email"
                         />
                     </div>
@@ -129,7 +121,7 @@ export default function LoginForm() {
                             {...register("password")}
                             id="password"
                             type="password"
-                            className={`w-full rounded-full border ${errors.password ? 'border-red-500' : 'border-slate-900/6'} bg-white/95 pl-10 pr-[1.1rem] py-[0.7rem] text-sm text-slate-900 placeholder:text-slate-400 transition-all duration-300 ease-out focus:-translate-y-px focus:border-accent/90 focus:bg-white focus:outline-none focus:ring-2 focus:ring-accent/25 focus:shadow-[0_0_0_1px_rgba(108,142,191,0.5),0_18px_40px_rgba(15,23,42,0.14)]`}
+                            className={`w-full rounded-full border ${errors.password ? 'border-red-500' : 'border-slate-900/6'} bg-white/95 pl-10 pr-[1.1rem] py-[0.7rem] text-base text-slate-900 placeholder:text-slate-400 transition-all duration-300 ease-out focus:-translate-y-px focus:border-accent/90 focus:bg-white focus:outline-none focus:ring-2 focus:ring-accent/25 focus:shadow-[0_0_0_1px_rgba(108,142,191,0.5),0_18px_40px_rgba(15,23,42,0.14)]`}
                             placeholder="Nhập mật khẩu"
                         />
                     </div>

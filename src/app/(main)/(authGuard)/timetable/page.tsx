@@ -64,14 +64,14 @@ export default function TimetablePage() {
     };
 
     return (
-        <div className="min-h-screen bg-secondary font-sans flex flex-col pt-24">
-            <main className="grow container mx-auto px-4 sm:px-6 lg:px-8 py-8 max-w-7xl">
+        <div className="min-h-screen bg-secondary font-sans flex flex-col pt-20 sm:pt-24">
+            <main className="grow container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 max-w-7xl">
                 {/* Header Section */}
-                <div className="mb-8">
-                    <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
+                <div className="mb-6 sm:mb-8">
+                    <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-4 sm:mb-6">
                         <div>
-                            <h1 className="font-poppins text-4xl font-bold text-primary mb-2">Thời khóa biểu</h1>
-                            <p className="text-slate-600 text-lg">Quản lý lịch học của bạn một cách trực quan và dễ dàng</p>
+                            <h1 className="font-poppins text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-1 sm:mb-2">Thời khóa biểu</h1>
+                            <p className="text-slate-600 text-sm sm:text-base md:text-lg">Quản lý lịch học của bạn một cách trực quan</p>
                         </div>
                         <button
                             onClick={() => {
@@ -79,24 +79,24 @@ export default function TimetablePage() {
                                 setSelectedDate(undefined);
                                 setIsFormModalOpen(true);
                             }}
-                            className="group flex items-center gap-2 rounded-full bg-linear-to-r from-accent to-accent-dark px-6 py-3 text-white font-semibold shadow-lg shadow-accent/30 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
+                            className="group w-full md:w-auto flex items-center justify-center gap-2 rounded-full bg-linear-to-r from-accent to-accent-dark px-6 py-2.5 sm:py-3 text-white font-semibold shadow-lg shadow-accent/30 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
                         >
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="transition-transform group-hover:rotate-90">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="transition-transform group-hover:rotate-90 sm:w-5 sm:h-5">
                                 <circle cx="12" cy="12" r="10" />
                                 <line x1="12" x2="12" y1="8" y2="16" />
                                 <line x1="8" x2="16" y1="12" y2="12" />
                             </svg>
-                            Thêm lịch học
+                            <span className="text-sm sm:text-base">Thêm lịch học</span>
                         </button>
                     </div>
                 </div>
 
                 {/* Calendar Container */}
-                <div className="bg-white rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.08)] border border-slate-100/50 overflow-hidden backdrop-blur-sm">
+                <div className="bg-white rounded-2xl sm:rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.08)] border border-slate-100/50 overflow-hidden backdrop-blur-sm">
                     {loading ? (
-                        <div className="h-[700px] flex flex-col items-center justify-center text-slate-500">
-                            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-accent mb-4"></div>
-                            <p className="text-lg font-medium">Đang tải dữ liệu lịch học...</p>
+                        <div className="h-[500px] sm:h-[700px] flex flex-col items-center justify-center text-slate-500 p-4 text-center">
+                            <div className="animate-spin rounded-full h-10 w-10 sm:h-12 sm:w-12 border-b-2 border-accent mb-4"></div>
+                            <p className="text-base sm:text-lg font-medium">Đang tải dữ liệu lịch học...</p>
                         </div>
                     ) : (
                         <TimetableCalendar
@@ -130,57 +130,57 @@ export default function TimetablePage() {
                     title="Thông tin buổi học"
                 >
                     {selectedEntry && (
-                        <div className="space-y-6">
-                            <div className="flex items-start gap-4">
-                                <div className="p-3 bg-blue-50 text-accent rounded-xl">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <div className="space-y-4 sm:space-y-6">
+                            <div className="flex items-start gap-3 sm:gap-4">
+                                <div className="p-2 sm:p-3 bg-blue-50 text-accent rounded-xl">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="sm:w-6 sm:h-6">
                                         <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
                                         <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
                                     </svg>
                                 </div>
                                 <div>
-                                    <h4 className="text-sm font-medium text-slate-500 uppercase tracking-wider">Môn học</h4>
-                                    <p className="text-xl font-bold text-slate-800">{selectedEntry.subject}</p>
+                                    <h4 className="text-[10px] sm:text-sm font-medium text-slate-500 uppercase tracking-wider">Môn học</h4>
+                                    <p className="text-lg sm:text-xl font-bold text-slate-800">{selectedEntry.subject}</p>
                                 </div>
                             </div>
 
-                            <div className="flex items-start gap-4">
-                                <div className="p-3 bg-purple-50 text-purple-600 rounded-xl">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <div className="flex items-start gap-3 sm:gap-4">
+                                <div className="p-2 sm:p-3 bg-purple-50 text-purple-600 rounded-xl">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="sm:w-6 sm:h-6">
                                         <circle cx="12" cy="12" r="10"></circle>
                                         <polyline points="12 6 12 12 16 14"></polyline>
                                     </svg>
                                 </div>
-                                <div>
-                                    <h4 className="text-sm font-medium text-slate-500 uppercase tracking-wider">Thời gian</h4>
-                                    <p className="text-lg font-semibold text-slate-800">
+                                <div className="overflow-hidden">
+                                    <h4 className="text-[10px] sm:text-sm font-medium text-slate-500 uppercase tracking-wider">Thời gian</h4>
+                                    <p className="text-base sm:text-lg font-semibold text-slate-800 wrap-break-word">
                                         {new Date(selectedEntry.startTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                                         {' - '}
                                         {new Date(selectedEntry.endTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                                     </p>
-                                    <p className="text-slate-600">
+                                    <p className="text-sm sm:text-base text-slate-600">
                                         {new Date(selectedEntry.startTime).toLocaleDateString(['vi-VN'], { weekday: 'long', day: '2-digit', month: '2-digit', year: 'numeric' })}
                                     </p>
                                 </div>
                             </div>
 
-                            <div className="flex items-start gap-4">
-                                <div className="p-3 bg-green-50 text-green-600 rounded-xl">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <div className="flex items-start gap-3 sm:gap-4">
+                                <div className="p-2 sm:p-3 bg-green-50 text-green-600 rounded-xl">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="sm:w-6 sm:h-6">
                                         <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                                         <circle cx="12" cy="10" r="3"></circle>
                                     </svg>
                                 </div>
-                                <div>
-                                    <h4 className="text-sm font-medium text-slate-500 uppercase tracking-wider">Địa điểm</h4>
-                                    <p className="text-lg font-semibold text-slate-800">{selectedEntry.location}</p>
+                                <div className="overflow-hidden">
+                                    <h4 className="text-[10px] sm:text-sm font-medium text-slate-500 uppercase tracking-wider">Địa điểm</h4>
+                                    <p className="text-base sm:text-lg font-semibold text-slate-800 wrap-break-word">{selectedEntry.location}</p>
                                 </div>
                             </div>
 
                             {selectedEntry.note && (
-                                <div className="flex items-start gap-4">
-                                    <div className="p-3 bg-amber-50 text-amber-600 rounded-xl">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <div className="flex items-start gap-3 sm:gap-4">
+                                    <div className="p-2 sm:p-3 bg-amber-50 text-amber-600 rounded-xl">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="sm:w-6 sm:h-6">
                                             <line x1="8" y1="6" x2="21" y2="6"></line>
                                             <line x1="8" y1="12" x2="21" y2="12"></line>
                                             <line x1="8" y1="18" x2="21" y2="18"></line>
@@ -190,22 +190,22 @@ export default function TimetablePage() {
                                         </svg>
                                     </div>
                                     <div>
-                                        <h4 className="text-sm font-medium text-slate-500 uppercase tracking-wider">Ghi chú</h4>
-                                        <p className="text-slate-700 whitespace-pre-wrap">{selectedEntry.note}</p>
+                                        <h4 className="text-[10px] sm:text-sm font-medium text-slate-500 uppercase tracking-wider">Ghi chú</h4>
+                                        <p className="text-sm sm:text-base text-slate-700 whitespace-pre-wrap mt-1">{selectedEntry.note}</p>
                                     </div>
                                 </div>
                             )}
 
-                            <div className="flex gap-3 pt-4 border-t border-slate-100">
+                            <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t border-slate-100">
                                 <button
                                     onClick={handleEditClick}
-                                    className="flex-1 bg-white border border-slate-300 text-slate-700 py-2.5 rounded-xl font-semibold hover:bg-slate-50 hover:border-slate-400 transition-all shadow-sm"
+                                    className="flex-1 bg-white border border-slate-300 text-slate-700 py-2 sm:py-2.5 rounded-xl font-semibold hover:bg-slate-50 hover:border-slate-400 transition-all shadow-sm text-sm sm:text-base"
                                 >
                                     Chỉnh sửa
                                 </button>
                                 <button
                                     onClick={() => handleDelete(selectedEntry._id!)}
-                                    className="flex-1 bg-red-50 text-red-600 border border-red-100 py-2.5 rounded-xl font-semibold hover:bg-red-100 hover:border-red-200 transition-all shadow-sm"
+                                    className="flex-1 bg-red-50 text-red-600 border border-red-100 py-2 sm:py-2.5 rounded-xl font-semibold hover:bg-red-100 hover:border-red-200 transition-all shadow-sm text-sm sm:text-base"
                                 >
                                     Xóa lịch học
                                 </button>

@@ -1,19 +1,18 @@
 "use client";
 
-import Header from "@/components/layout/Header";
-import { useUser } from "@/contexts/UserContext";
 import { useRouter } from "next/navigation";
 import Modal from "@/components/ui/Modal";
+import { useAuth } from "@/contexts/AuthContext";
 
 const AuthGuardLayout = ({ children }: { children: React.ReactNode }) => {
-    const { user, isAuthLoading } = useUser();
+    const { user, isLoading } = useAuth();
     const router = useRouter();
 
     const handleLoginRedirect = () => {
         router.push('/login');
     };
 
-    const showLoginPrompt = !isAuthLoading && !user;
+    const showLoginPrompt = !isLoading && !user;
 
     return (
         <>

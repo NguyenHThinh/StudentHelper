@@ -20,7 +20,7 @@ export default function ChatInput({ value, onChange, onSubmit, isTyping, inputRe
                         value={value}
                         onChange={(e) => onChange(e.target.value)}
                         placeholder="Nhập tin nhắn của bạn..."
-                        className="flex-1 rounded-full border border-slate-200 bg-white px-5 py-3.5 text-sm text-slate-900 placeholder:text-slate-400 transition-all duration-300 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
+                        className="flex-1 rounded-full border border-slate-200 bg-white px-5 py-3.5 text-base text-slate-900 placeholder:text-slate-400 transition-all duration-300 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
                         disabled={isTyping}
                     />
                     <button
