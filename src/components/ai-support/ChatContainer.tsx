@@ -127,7 +127,7 @@ export default function ChatContainer() {
         }
     };
 
-    const isLimitReached = messages.length - 1 >= 15;
+    const isLimitReached = messages.length - 1 >= 25;
 
     return (
         <div className="flex flex-1 flex-col pt-20 lg:pt-26 overflow-hidden">
