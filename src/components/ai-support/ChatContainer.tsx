@@ -114,6 +114,21 @@ export default function ChatContainer() {
         sendMessage(prompt);
     };
 
+    const handleResetThread = async () => {
+        if (!confirm("Bạn có chắc chắn muốn xóa toàn bộ lịch sử và bắt đầu cuộc trò chuyện mới?")) {
+            return;
+        }
+
+        const response = await aiService.deleteHistory();
+        if (response.success) {
+            setMessages([welcomeMessage]);
+        } else {
+            alert("Không thể xóa lịch sử chat. Vui lòng thử lại sau.");
+        }
+    };
+
+    const isLimitReached = messages.length - 1 >= 15;
+
     return (
         <div className="flex flex-1 flex-col pt-20 lg:pt-26 overflow-hidden">
             {/* Messages Area */}
@@ -157,13 +172,32 @@ export default function ChatContainer() {
             )}
 
             {/* Input Area */}
-            <ChatInput
-                value={inputValue}
-                onChange={setInputValue}
-                onSubmit={handleSubmit}
-                isTyping={isTyping}
-                inputRef={inputRef}
-            />
+            <div className="relative">
+                {isLimitReached && (
+                    <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-white/90 backdrop-blur-sm p-4 text-center">
+                        <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-amber-100 text-amber-600">
+                            <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                            </svg>
+                        </div>
+                        <h4 className="text-sm font-semibold text-slate-900">Giới hạn thread đã đạt 15 tin nhắn</h4>
+                        <p className="mt-1 text-xs text-slate-500">Để đảm bảo trải nghiệm tốt nhất, vui lòng làm mới cuộc trò chuyện.</p>
+                        <button
+                            onClick={handleResetThread}
+                            className="mt-4 rounded-full bg-accent px-6 py-2 text-sm font-semibold text-white shadow-md transition-all hover:bg-accent-dark hover:shadow-lg"
+                        >
+                            Làm mới cuộc trò chuyện
+                        </button>
+                    </div>
+                )}
+                <ChatInput
+                    value={inputValue}
+                    onChange={setInputValue}
+                    onSubmit={handleSubmit}
+                    isTyping={isTyping}
+                    inputRef={inputRef}
+                />
+            </div>
         </div>
     );
 }

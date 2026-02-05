@@ -26,6 +26,15 @@ const aiService = {
         } catch (error: any) {
             return error.response?.data || { success: false, message: 'Error fetching history' };
         }
+    },
+
+    deleteHistory: async () => {
+        try {
+            const response = await axiosInstance.delete('/openai/history');
+            return response.data;
+        } catch (error: any) {
+            return error.response?.data || { success: false, message: 'Error deleting history' };
+        }
     }
 };
 
